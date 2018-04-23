@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MyFabricStashApp.Models.FabricListViewModel>
+
+@{
+    ViewBag.Title = "Fabrics List";
+}
+
+<h2>Fabrics List</h2>
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By Name" />
+</form>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object"
+                     src="@item.ImagePath" alt="" />
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">@item.MainCategory / @item.SubCategory1 / @item.SubCategory2</h4>
+            Name: @item.Name<br />
+            Quantity: @item.Quantity yd<br />
+            Item Location: @item.Location<br />
+            Items Sold to Date: <span style="color: red; font-weight: bold">@item.ItemsSold</span><br />
+            Purchases: @item.PurchaseCount<br />
+            @Html.ActionLink("Edit", "Edit", new { id = item.FabricId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.FabricId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.FabricId })
+        </div>
+        <hr />
+    </div>
+}

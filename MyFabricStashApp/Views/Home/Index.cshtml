@@ -1,31 +1,64 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model IEnumerable<MyFabricStashApp.Models.FabricListViewModel>
+@{
+    ViewBag.Title = "Upload Image";
+    WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    if (IsPost)
+    {
+        photo = WebImage.GetImageFromRequest();
+        if(photo != null)
+        {
+            newFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(photo.FileName);
+            imagePath = @"images\" + newFileName;
+
+            photo.Save(@"~\" + imagePath);
+        }
+    }
+}
+<h1>Fabric List</h1>
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" 
+                     src="@item.ImagePath" alt="" />
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">@item.MainCategory / @item.SubCategory1 / @item.SubCategory2</h4>
+            Name: @item.Name<br />
+            Quantity: @item.Quantity yd<br />
+            Item Location: @item.Location<br />
+            Items Sold to Date: <span style="color: red; font-weight: bold">@item.ItemsSold</span><br />
+            Purchases: @item.PurchaseCount
+        </div>
+        <hr />
+    </div>
+}
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Image Upload</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend>
+                    Upload Image
+                </legend>
+                <label for="Image">Image</label>
+                <input type="file" name="Image" />
+                <br />
+                <input type="submit" value="Upload" />
+            </fieldset>
+        </form> 
+        <h1>Uploaded Image</h1>
+        @if(imagePath != "")
+        {
+            <div class="result">
+                <img src="..\@imagePath" alt="image" />
+            </div>
+        }
     </div>
 </div>
