@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFabricStashApp", "MyFabricStashApp\MyFabricStashApp.csproj", "{92A69DBE-7DA0-4398-AF4A-E3D592AE74F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFabricStashApp.Tests", "MyFabricStashApp.Tests\MyFabricStashApp.Tests.csproj", "{3F031E81-F585-42C8-877F-5C404908AD63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92A69DBE-7DA0-4398-AF4A-E3D592AE74F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A69DBE-7DA0-4398-AF4A-E3D592AE74F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A69DBE-7DA0-4398-AF4A-E3D592AE74F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A69DBE-7DA0-4398-AF4A-E3D592AE74F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F031E81-F585-42C8-877F-5C404908AD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F031E81-F585-42C8-877F-5C404908AD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F031E81-F585-42C8-877F-5C404908AD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F031E81-F585-42C8-877F-5C404908AD63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {533E0978-ABA2-41FA-8EFF-B03384372565}
+	EndGlobalSection
+EndGlobal
