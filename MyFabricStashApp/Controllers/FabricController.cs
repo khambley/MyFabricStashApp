@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using MyFabricStashApp.Models;
 
@@ -43,6 +45,19 @@ namespace MyFabricStashApp.Controllers
                 });
             return View(model);
         }
+        public ActionResult UploadImage(HttpPostedFileBase file, Fabric model)
+        {
+            if(file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/images/"), pic);
+                file.SaveAs(path);
+                model.ImagePath = path;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View("UploadImage");
+        }
 
         // GET: Fabric/Details/5
         public ActionResult Details(int? id)
@@ -70,10 +85,16 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric)
+        public ActionResult Create([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                var filename = Path.GetFileName(file.FileName);
+                string fabricId = fabric.FabricId.ToString();
+                string myfile = fabricId + "_" + filename;
+                var path = Path.Combine(Server.MapPath("~/images"), myfile);
+                fabric.ImagePath = myfile;
+                file.SaveAs(path);
                 db.Fabrics.Add(fabric);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -102,12 +123,24 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric)
+        public ActionResult Edit([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
         {
+            //if (file != null) { 
+            //    var filename = Path.GetFileName(file.FileName);
+            //    var path = Path.Combine(Server.MapPath("~/images"), filename);
+            //    fabric.ImagePath = path;
+            //    db.Fabrics.Add(fabric);
+            //    db.SaveChanges();
+            //    file.SaveAs(path);
+            //}
             if (ModelState.IsValid)
             {
+                var filename = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/images"), filename);
+                fabric.ImagePath = filename;
                 db.Entry(fabric).State = EntityState.Modified;
                 db.SaveChanges();
+                file.SaveAs(path);
                 return RedirectToAction("Index");
             }
             return View(fabric);

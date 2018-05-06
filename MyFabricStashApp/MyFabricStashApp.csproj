@@ -232,7 +232,22 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\MyFabricStashApp20180504062800 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\0e15673e-336e-445b-be99-dba3cb7c22e0_Chicago-Cubs-v1-fabric.jpg" />
+    <Content Include="images\0_chicago_bears_fabric.jpg" />
+    <Content Include="images\1000002-Fabric-GreyBkgdGreenWhiteBlueModernFloral-HL.jpg" />
+    <Content Include="images\7a1585d7-db0d-4f4f-9f07-874162ae2c3e_Chicago-Cubs-v1-fabric.jpg" />
+    <Content Include="images\Avlyn-BlackWhiteLeaves.jpeg" />
+    <Content Include="images\Avlyn-WhiteAndBlackLeaves.jpeg" />
+    <Content Include="images\Chicago-Cubs-v1-fabric.jpg" />
+    <Content Include="images\chicago_bears_fabric.jpg" />
+    <Content Include="images\Doctor-Who-Exploding-Tardis-sm.jpg" />
+    <Content Include="images\e266a049-b970-4405-adb9-9e2b3b1b1c49_Chicago-Cubs-v1-fabric.jpg" />
+    <Content Include="images\f7dad9ad-63d3-4be4-8594-1e7ca92f02b8_Chicago-Cubs-v1-fabric.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -284,6 +299,7 @@
     <Content Include="Views\Fabric\Details.cshtml" />
     <Content Include="Views\Fabric\Edit.cshtml" />
     <Content Include="Views\Fabric\Index.cshtml" />
+    <Content Include="Views\Fabric\UploadImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,7 @@ namespace MyFabricStashApp.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "MyFabricStashApp.Models.MyFabricStashDb";
         }
 
