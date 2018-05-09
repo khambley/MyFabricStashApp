@@ -42,9 +42,8 @@ namespace MyFabricStashApp.Controllers
                 {
                     FabricId = f.FabricId,
                     Name = f.Name,
-                    MainCategory = f.MainCategory,
-                    SubCategory1 = f.SubCategory1,
-                    SubCategory2 = f.SubCategory2,
+                    MainCategoryId = f.MainCategoryId,
+                    SubCategory1Id = f.SubCategory1Id,
                     ImagePath = f.ImagePath,
                     Location = f.Location,
                     Type = f.Type,

@@ -1,0 +1,43 @@
+﻿@model MyFabricStashApp.Models.Fabric
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        if ($("#MainCategoryId").val() == '0') {
+            var subcategory1DefaultValue = "<option value='0'>--Select a main category first--</option>";
+            $("#SubCategory1Id").html(subcategory1DefaultValue).show();
+        }
+
+        $("#MainCategoryId").change(function () {
+            var selectedFabricValue = $(this).val();
+
+            var ddlSubCategories1 = $("#SubCategory1Id");
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: '@Url.Action("GetSubCategories1ByMainCategoryId", "Fabric")',
+                data: { "id": selectedFabricValue },
+                success: function (data) {
+                    ddlSubCategories1.html('');
+                    $.each(data, function (id, option) {
+                        ddlSubCategories1.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Error loading Subcategories!');
+                }
+            });
+        });
+    });
+</script>
+@Html.LabelFor(model => model.MainCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class="col-md-10">
+    @*@Html.EditorFor(model => model.MainCategoryId, new { htmlAttributes = new { @class = "form-control" } })*@
+    @Html.DropDownList("MainCategoryId", null, htmlAttributes: new { @class = "form-control" })
+    <a class="button" href="@Url.Content("~/Category/Create")" id="categoryAddLink">Add New Category</a>
+    @Html.ValidationMessageFor(model => model.MainCategoryId, "", new { @class = "text-danger" })
+
+    <div id="categoryDialog" class="hidden"></div>
+    <script src="@Url.Content("~/Scripts/ui/jquery.ui.combobox.js")"></script>
+    <script src="@Url.Content("~/Scripts/chooseCategory.js")"></script>
+</div>
+

@@ -8,9 +8,8 @@ namespace MyFabricStashApp.Models
     public class FabricListViewModel
     {
         public int FabricId { get; set; } //Item Number
-        public string MainCategory { get; set; }
-        public string SubCategory1 { get; set; }
-        public string SubCategory2 { get; set; }
+        public int MainCategoryId { get; set; }
+        public int SubCategory1Id { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Location { get; set; }

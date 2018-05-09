@@ -26,9 +26,8 @@ namespace MyFabricStashApp.Controllers
                 {
                     FabricId = f.FabricId,
                     Name = f.Name,
-                    MainCategory = f.MainCategory,
-                    SubCategory1 = f.SubCategory1,
-                    SubCategory2 = f.SubCategory2,
+                    MainCategoryId = f.MainCategoryId,
+                    SubCategory1Id = f.SubCategory1Id,
                     ImagePath = f.ImagePath,
                     Location = f.Location,
                     Type = f.Type,
@@ -73,10 +72,33 @@ namespace MyFabricStashApp.Controllers
             }
             return View(fabric);
         }
+        public JsonResult GetSubCategories1ByMainCategoryId(int id)
+        {
+            List<SubCategory1> subCategories1 = new List<SubCategory1>();
+            if(id > 0)
+            {
+                subCategories1 = db.SubCategories1.Where(s => s.MainCategoryId == id).ToList();
+            } else
+            {
+                subCategories1.Insert(0, new SubCategory1 { SubCategory1Id = 0, Name = "--Select a main category first" });
+            }
+            var result = (from r in subCategories1
+                          select new
+                          {
+                              id = r.SubCategory1Id,
+                              name = r.Name
+                          }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Fabric/Create
         public ActionResult Create()
         {
+            List<MainCategory> lstMainCategories = db.MainCategories.ToList();
+            lstMainCategories.Insert(0, new MainCategory { MainCategoryId = 0, Name = "--Select Category--" });
+            List<SubCategory1> lstSubCategories1 = new List<SubCategory1>();
+            ViewBag.MainCategoryId = new SelectList(lstMainCategories, "MainCategoryId", "Name");
+            ViewBag.SubCategory1Id = new SelectList(lstSubCategories1, "SubCategory1Id", "Name");
             return View();
         }
 

@@ -8,9 +8,9 @@ namespace MyFabricStashApp.Models
     public class Fabric
     {
         public int FabricId { get; set; } //Item Number
-        public string MainCategory { get; set; }
-        public string SubCategory1 { get; set; }
-        public string SubCategory2 { get; set; }
+        
+        public int MainCategoryId { get; set; }
+        public int SubCategory1Id { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Location { get; set; }
@@ -26,6 +26,10 @@ namespace MyFabricStashApp.Models
         public List<string> Tags { get; set; }
         public int ItemsSold { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }
+
+        public virtual MainCategory MainCategory { get; set; }
+        public virtual SubCategory1 SubCategory1 { get; set; }
+        
 
     }
 }

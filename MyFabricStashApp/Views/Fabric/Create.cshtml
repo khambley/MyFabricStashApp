@@ -4,13 +4,14 @@
     ViewBag.Title = "Create";
 }
 
+
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Fabric", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Fabric", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Fabric</h4>
     <hr />
@@ -38,26 +39,15 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.MainCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MainCategory, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MainCategory, "", new { @class = "text-danger" })
-        </div>
+        @Html.Partial("_ChooseCategory")
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.SubCategory1, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.SubCategory1Id, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SubCategory1, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SubCategory1, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SubCategory2, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SubCategory2, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SubCategory2, "", new { @class = "text-danger" })
+            @*@Html.EditorFor(model => model.SubCategory1Id, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownList("SubCategory1Id", null, htmlAttributes: new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.SubCategory1Id, "", new { @class = "text-danger" })
         </div>
     </div>
 

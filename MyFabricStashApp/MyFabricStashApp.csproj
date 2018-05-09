@@ -196,19 +196,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804170020044_InitialCreate.cs" />
-    <Compile Include="Migrations\201804170020044_InitialCreate.Designer.cs">
-      <DependentUpon>201804170020044_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201805070313166_Initial.cs" />
+    <Compile Include="Migrations\201805070313166_Initial.Designer.cs">
+      <DependentUpon>201805070313166_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fabric.cs" />
     <Compile Include="Models\FabricListViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MainCategory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyFabricStashDb.cs" />
     <Compile Include="Models\Purchase.cs" />
-    <Compile Include="Models\Sample.cs" />
+    <Compile Include="Models\SubCategory1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -234,8 +235,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
-    <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
     <None Include="Properties\PublishProfiles\MyFabricStashApp20180504062800 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\MYFABRICSTASHDEV.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="images\0e15673e-336e-445b-be99-dba3cb7c22e0_Chicago-Cubs-v1-fabric.jpg" />
     <Content Include="images\0_chicago_bears_fabric.jpg" />
@@ -250,9 +251,12 @@
     <Content Include="images\f7dad9ad-63d3-4be4-8594-1e7ca92f02b8_Chicago-Cubs-v1-fabric.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chooseCategory.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\ui\jquery.ui.combobox.css" />
+    <Content Include="Scripts\ui\jquery.ui.combobox.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -260,7 +264,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -300,6 +306,7 @@
     <Content Include="Views\Fabric\Edit.cshtml" />
     <Content Include="Views\Fabric\Index.cshtml" />
     <Content Include="Views\Fabric\UploadImage.cshtml" />
+    <Content Include="Views\Fabric\_ChooseCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,8 +316,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804170020044_InitialCreate.resx">
-      <DependentUpon>201804170020044_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805070313166_Initial.resx">
+      <DependentUpon>201805070313166_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
