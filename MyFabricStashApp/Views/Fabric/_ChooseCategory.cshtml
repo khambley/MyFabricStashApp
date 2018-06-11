@@ -1,5 +1,6 @@
 ﻿@model MyFabricStashApp.Models.Fabric
-<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript">
     $(function () {
         if ($("#MainCategoryId").val() == '0') {
@@ -10,7 +11,7 @@
         $("#MainCategoryId").change(function () {
             var selectedFabricValue = $(this).val();
 
-            var ddlSubCategories1 = $("#SubCategory1Id");
+            var ddlSubCategories1 = $("#SubCategory1Id"); //the dropdown list for subcategories
             $.ajax({
                 cache: false,
                 type: "GET",
@@ -29,15 +30,17 @@
         });
     });
 </script>
+
 @Html.LabelFor(model => model.MainCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
 <div class="col-md-10">
-    @*@Html.EditorFor(model => model.MainCategoryId, new { htmlAttributes = new { @class = "form-control" } })*@
+
     @Html.DropDownList("MainCategoryId", null, htmlAttributes: new { @class = "form-control" })
-    <a class="button" href="@Url.Content("~/Category/Create")" id="categoryAddLink">Add New Category</a>
+    <a class="button" href="@Url.Content("~/Category/Create")" id="categoryAddLink" target="_blank">Add New Category</a>
+
     @Html.ValidationMessageFor(model => model.MainCategoryId, "", new { @class = "text-danger" })
 
-    <div id="categoryDialog" class="hidden"></div>
-    <script src="@Url.Content("~/Scripts/ui/jquery.ui.combobox.js")"></script>
-    <script src="@Url.Content("~/Scripts/chooseCategory.js")"></script>
+
+    <script src="~/Scripts/ui/jquery.ui.combobox.js"></script>
+    @*<script src="@Url.Content("~/Scripts/chooseCategory.js")"></script>*@
 </div>
 

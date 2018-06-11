@@ -1,19 +1,17 @@
 namespace MyFabricStashApp.Migrations
 {
-    using MyFabricStashApp.Models;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using MyFabricStashApp.Models;
+    using System.Collections.Generic;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MyFabricStashApp.Models.MyFabricStashDb>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "MyFabricStashApp.Models.MyFabricStashDb";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MyFabricStashApp.Models.MyFabricStashDb context)
@@ -38,7 +36,7 @@ namespace MyFabricStashApp.Migrations
                         new SubCategory1{Name = "Marvel Comics"},
                         new SubCategory1{Name = "DC Comics"},
                         new SubCategory1{Name = "Doctor Who"}
-                        
+
                     }
                 },
                 new MainCategory
@@ -52,6 +50,7 @@ namespace MyFabricStashApp.Migrations
                     }
                 }
                 );
+
         }
     }
 }

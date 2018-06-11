@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MyFabricStashApp.Models.MainCategory>
+
+@{
+    ViewBag.Title = "Categories List";
+}
+
+<h2>Categories List</h2>
+<a class="button" href="@Url.Content("~/Category/Create")" id="categoryAddLink" target="_blank">Add New Category</a>
+@foreach (var item in Model)
+{
+<div class="col-md-12">
+    <b style="font-size: 1.5em;">@item.Name </b>@Html.ActionLink("Edit", "EditCategory", new { id = item.MainCategoryId }) <text>&nbsp;</text>
+    @Html.ActionLink("Delete", "DeleteMainCategory", new { id = item.MainCategoryId })<br />
+    <div class="col-md-3">
+        @Html.Partial("_SubCategories", item.SubCategories1.OrderBy(n => n.Name))
+
+        @Html.ActionLink("Add New SubCategory", "CreateSubCategory", new { maincategoryId = item.MainCategoryId, maincategoryName = item.Name })<br />
+        <br />
+
+    </div>
+</div>
+<br />
+}
+
+

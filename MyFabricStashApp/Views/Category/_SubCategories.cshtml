@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MyFabricStashApp.Models.SubCategory1>
+<div>
+
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(modelItem => item.Name) <text>&nbsp;</text>
+        @Html.ActionLink("Edit", "EditSubCategory", new { id = item.SubCategory1Id }) <text>&nbsp;</text>
+        @Html.ActionLink("Delete", "DeleteSubCategory", new { id = item.SubCategory1Id })
+        <br />
+    }
+</div>
+
+
+

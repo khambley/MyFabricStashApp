@@ -19,7 +19,7 @@ namespace MyFabricStashApp.Controllers
         // GET: Fabric
         public ActionResult Index(string searchTerm = null)
         {
-            var model = db.Fabrics
+            var model = db.Fabrics.Include(f => f.MainCategory).Include(f => f.SubCategory1)
                 .OrderByDescending(f => f.ItemsSold)
                 .Where(f => searchTerm == null || f.Name.StartsWith(searchTerm))
                 .Select(f => new FabricListViewModel
@@ -27,7 +27,9 @@ namespace MyFabricStashApp.Controllers
                     FabricId = f.FabricId,
                     Name = f.Name,
                     MainCategoryId = f.MainCategoryId,
+                    MainCategoryName = f.MainCategory.Name,
                     SubCategory1Id = f.SubCategory1Id,
+                    SubCategory1Name = f.SubCategory1.Name,
                     ImagePath = f.ImagePath,
                     Location = f.Location,
                     Type = f.Type,
@@ -77,7 +79,7 @@ namespace MyFabricStashApp.Controllers
             List<SubCategory1> subCategories1 = new List<SubCategory1>();
             if(id > 0)
             {
-                subCategories1 = db.SubCategories1.Where(s => s.MainCategoryId == id).ToList();
+                subCategories1 = db.SubCategories1.OrderBy(n => n.Name).Where(s => s.MainCategoryId == id).ToList();
             } else
             {
                 subCategories1.Insert(0, new SubCategory1 { SubCategory1Id = 0, Name = "--Select a main category first" });
@@ -95,10 +97,23 @@ namespace MyFabricStashApp.Controllers
         public ActionResult Create()
         {
             List<MainCategory> lstMainCategories = db.MainCategories.ToList();
+
             lstMainCategories.Insert(0, new MainCategory { MainCategoryId = 0, Name = "--Select Category--" });
+
             List<SubCategory1> lstSubCategories1 = new List<SubCategory1>();
+
             ViewBag.MainCategoryId = new SelectList(lstMainCategories, "MainCategoryId", "Name");
+
             ViewBag.SubCategory1Id = new SelectList(lstSubCategories1, "SubCategory1Id", "Name");
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "Interfacing", Value = "0" });
+            items.Add(new SelectListItem { Text = "Knit", Value = "1" });
+            items.Add(new SelectListItem { Text = "Suiting", Value = "2" });
+            items.Add(new SelectListItem { Text = "Voile", Value = "3" });
+            items.Add(new SelectListItem { Text = "Woven", Value = "4" });
+            ViewBag.FabricType = items;
+
             return View();
         }
 
@@ -107,7 +122,7 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -193,7 +208,11 @@ namespace MyFabricStashApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public ActionResult SelectType()
+        {
+            
+            return View("Create");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

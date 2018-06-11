@@ -1,0 +1,16 @@
+﻿@model MyFabricStashApp.Models.MainCategory
+
+
+@{
+    ViewBag.Title = "SubCategories";
+}
+
+<h2>SubCategories For @Model.Name</h2>
+
+@Html.Partial("_SubCategories", Model.SubCategories1)
+
+<p>
+    @Html.ActionLink("Create New", "CreateSubCategory", new { maincategoryId = Model.MainCategoryId, maincategoryName = Model.Name})<br />
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

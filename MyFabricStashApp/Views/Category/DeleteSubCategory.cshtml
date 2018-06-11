@@ -1,0 +1,40 @@
+﻿@model MyFabricStashApp.Models.SubCategory1
+
+@{
+    ViewBag.Title = "DeleteSubCategory";
+}
+
+<h2>DeleteSubCategory</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SubCategory1</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MainCategory.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

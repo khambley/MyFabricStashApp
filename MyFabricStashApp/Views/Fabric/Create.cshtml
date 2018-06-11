@@ -3,10 +3,7 @@
 @{
     ViewBag.Title = "Create";
 }
-
-
 <h2>Create</h2>
-
 
 @using (Html.BeginForm("Create", "Fabric", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -42,11 +39,12 @@
         @Html.Partial("_ChooseCategory")
     </div>
 
+    @*@Html.Partial("_SubCategory", Model.SubCategory1)*@
     <div class="form-group">
         @Html.LabelFor(model => model.SubCategory1Id, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @*@Html.EditorFor(model => model.SubCategory1Id, new { htmlAttributes = new { @class = "form-control" } })*@
-            @Html.DropDownList("SubCategory1Id", null, htmlAttributes: new { @class = "form-control"})
+            @Html.DropDownList("SubCategory1Id", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SubCategory1Id, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -71,7 +69,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.DropDownList("FabricType", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
         </div>
     </div>
