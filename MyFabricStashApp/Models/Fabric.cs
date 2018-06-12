@@ -29,6 +29,6 @@ namespace MyFabricStashApp.Models
         public string Notes { get; set; }
         public List<string> Tags { get; set; }
         public int ItemsSold { get; set; }
-        public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual List<Purchase> Purchases { get; set; }
     }
 }

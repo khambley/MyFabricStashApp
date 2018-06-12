@@ -107,11 +107,12 @@ namespace MyFabricStashApp.Controllers
             ViewBag.SubCategory1Id = new SelectList(lstSubCategories1, "SubCategory1Id", "Name");
 
             List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "Interfacing", Value = "0" });
-            items.Add(new SelectListItem { Text = "Knit", Value = "1" });
-            items.Add(new SelectListItem { Text = "Suiting", Value = "2" });
-            items.Add(new SelectListItem { Text = "Voile", Value = "3" });
-            items.Add(new SelectListItem { Text = "Woven", Value = "4" });
+            items.Add(new SelectListItem { Text = "--Select Fabric Type--", Value = "0" });
+            items.Add(new SelectListItem { Text = "Interfacing", Value = "1" });
+            items.Add(new SelectListItem { Text = "Knit", Value = "2" });
+            items.Add(new SelectListItem { Text = "Suiting", Value = "3" });
+            items.Add(new SelectListItem { Text = "Voile", Value = "4" });
+            items.Add(new SelectListItem { Text = "Woven", Value = "5" });
             ViewBag.FabricType = items;
 
             return View();
