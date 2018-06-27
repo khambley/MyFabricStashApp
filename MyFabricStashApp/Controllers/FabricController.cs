@@ -68,6 +68,32 @@ namespace MyFabricStashApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Fabric fabric = db.Fabrics.Find(id);
+
+            //var model = db.Fabrics.Include(f => f.MainCategory).Include(f => f.SubCategory1)
+            //   .OrderByDescending(f => f.ItemsSold)
+            //   .Where(f => f.FabricId == id)
+            //   .Select(f => new FabricListViewModel
+            //   {
+            //       FabricId = f.FabricId,
+            //       Name = f.Name,
+            //       MainCategoryId = f.MainCategoryId,
+            //       MainCategoryName = f.MainCategory.Name,
+            //       SubCategory1Id = f.SubCategory1Id,
+            //       SubCategory1Name = f.SubCategory1.Name,
+            //       ImagePath = f.ImagePath,
+            //       Location = f.Location,
+            //       Type = f.Type,
+            //       Weight = f.Weight,
+            //       Content = f.Content,
+            //       Design = f.Design,
+            //       Brand = f.Brand,
+            //       Quantity = f.Quantity,
+            //       Width = f.Width,
+            //       Source = f.Source,
+            //       Notes = f.Notes,
+            //       ItemsSold = f.ItemsSold,
+            //       PurchaseCount = f.Purchases.Count()
+            //   });
             if (fabric == null)
             {
                 return HttpNotFound();

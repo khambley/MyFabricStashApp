@@ -1,138 +1,29 @@
 ﻿@model MyFabricStashApp.Models.Fabric
 
 @{
-    ViewBag.Title = "Details";
+   ViewBag.Title = Model.Name + " | Details";
 }
 
-<h2>Details</h2>
+<h2>@Model.Name | Details</h2>
 
-<div>
-    <h4>Fabric</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MainCategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MainCategoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubCategory1Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubCategory1Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Design)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Design)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Width)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Width)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Source)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Source)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemsSold)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ItemsSold)
-        </dd>
-
-    </dl>
+<div class="media">
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" src="/images/@Model.ImagePath" width="300" alt="thumbnail" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">@Model.MainCategory.Name / @Model.SubCategory1.Name </h4>
+        Name: @Model.Name<br />
+        Quantity: @Model.Quantity yd<br />
+        Model Location: @Model.Location<br />
+        Models Sold to Date: <span style="color: red; font-weight: bold">@Model.ItemsSold</span><br />
+        Purchases:<br />
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FabricId }) |
+        
+    </div>
+    <p>
+        
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FabricId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
