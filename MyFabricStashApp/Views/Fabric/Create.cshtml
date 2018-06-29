@@ -41,9 +41,8 @@
 
     @*@Html.Partial("_SubCategory", Model.SubCategory1)*@
     <div class="form-group">
-        @Html.LabelFor(model => model.SubCategory1Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">SubCategory</label>
         <div class="col-md-10">
-            @*@Html.EditorFor(model => model.SubCategory1Id, new { htmlAttributes = new { @class = "form-control" } })*@
             @Html.DropDownList("SubCategory1Id", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SubCategory1Id, "", new { @class = "text-danger" })
         </div>

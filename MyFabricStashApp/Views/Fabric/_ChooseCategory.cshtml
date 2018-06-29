@@ -31,7 +31,7 @@
     });
 </script>
 
-@Html.LabelFor(model => model.MainCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+<label class="control-label col-md-2">Category</label>
 <div class="col-md-10">
 
     @Html.DropDownList("MainCategoryId", null, htmlAttributes: new { @class = "form-control" })
