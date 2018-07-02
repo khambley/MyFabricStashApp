@@ -16,10 +16,10 @@
         <h4 class="media-heading">@Model.MainCategory.Name / @Model.SubCategory1.Name </h4>
         Name: @Model.Name<br />
         Quantity: @Model.Quantity yd<br />
-        Model Location: @Model.Location<br />
-        Models Sold to Date: <span style="color: red; font-weight: bold">@Model.ItemsSold</span><br />
+        Location: @Model.Location<br />
+        Sold to Date: <span style="color: red; font-weight: bold">@Model.ItemsSold</span><br />
         Purchases:<br />
-        @Html.ActionLink("Edit", "Edit", new { id = Model.FabricId }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.FabricId })
         
     </div>
     <p>
