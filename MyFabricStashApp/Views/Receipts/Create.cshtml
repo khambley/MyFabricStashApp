@@ -1,0 +1,73 @@
+﻿@model MyFabricStashApp.Models.Receipt
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Receipt</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class = "control-label col-md-2">Receipt Image</label>
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ReceiptImagePath, new { htmlAttributes = new { @class = "form-control" } })*@
+                <div>
+                    <img id="user_img" width="150" />
+                </div>
+                <br />
+                <input type="file" title="Upload Image" id="file" name="file" onchange="show(this)" />
+                @Html.ValidationMessageFor(model => model.ReceiptImagePath, "", new { @class = "text-danger" })
+                <script type="text/javascript">
+                    function show(input) {
+                        if (input.files && input.files[0]) {
+                            var filereader = new FileReader();
+                            filereader.onload = function (e) {
+                                $('#user_img').attr('src', e.target.result);
+                            }
+                            filereader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Receipt Date</label>
+            <div class="col-md-10">
+                @*TODO: Add DatePicker using JqueryUI*@
+                @Html.EditorFor(model => model.ReceiptDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReceiptDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

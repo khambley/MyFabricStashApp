@@ -13,5 +13,7 @@ namespace MyFabricStashApp.Models
         public int PurchaseQuantity { get; set; }
         public double PurchasePrice { get; set; }
         public int FabricId { get; set; }
+        public int ReceiptId { get; set; }
+
     }
 }
