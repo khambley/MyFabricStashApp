@@ -224,6 +224,14 @@
     <Compile Include="Migrations\201807041654512_TotalQtyChange.Designer.cs">
       <DependentUpon>201807041654512_TotalQtyChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807041953111_AddSourceModel.cs" />
+    <Compile Include="Migrations\201807041953111_AddSourceModel.Designer.cs">
+      <DependentUpon>201807041953111_AddSourceModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807041955542_UpdateDbSet.cs" />
+    <Compile Include="Migrations\201807041955542_UpdateDbSet.Designer.cs">
+      <DependentUpon>201807041955542_UpdateDbSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fabric.cs" />
@@ -234,6 +242,7 @@
     <Compile Include="Models\MyFabricStashDb.cs" />
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\Source.cs" />
     <Compile Include="Models\SubCategory1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -412,6 +421,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807041654512_TotalQtyChange.resx">
       <DependentUpon>201807041654512_TotalQtyChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041953111_AddSourceModel.resx">
+      <DependentUpon>201807041953111_AddSourceModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041955542_UpdateDbSet.resx">
+      <DependentUpon>201807041955542_UpdateDbSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

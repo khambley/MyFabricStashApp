@@ -17,6 +17,8 @@ namespace MyFabricStashApp.Models
         public DbSet<SubCategory1> SubCategories1 { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<Source> Sources { get; set; }
+
 
     }
 }

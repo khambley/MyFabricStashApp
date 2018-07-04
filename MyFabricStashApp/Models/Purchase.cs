@@ -12,8 +12,12 @@ namespace MyFabricStashApp.Models
         public DateTime PurchaseDate { get; set; }
         public int PurchaseQuantity { get; set; }
         public double PurchasePrice { get; set; }
+
         public int FabricId { get; set; }
         public int ReceiptId { get; set; }
+        public int SourceId { get; set; }
+
+        public string Notes { get; set; }
 
     }
 }

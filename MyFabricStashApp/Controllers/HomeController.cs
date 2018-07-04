@@ -52,7 +52,6 @@ namespace MyFabricStashApp.Controllers
                     Brand = f.Brand,
                     TotalQty = f.TotalQty,
                     Width = f.Width,
-                    Source = f.Source,
                     Notes = f.Notes,
                     ItemsSold = f.ItemsSold,
                     PurchaseCount = f.Purchases.Count()

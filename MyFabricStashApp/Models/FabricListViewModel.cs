@@ -25,7 +25,6 @@ namespace MyFabricStashApp.Models
         public string Brand { get; set; } //Springs Creative Products, Free Spirit, Robert Kaufman, etc.
         public double TotalQty { get; set; }//.25 yd, .50 yd, .75 yd, 1.0 yd, etc.
         public int Width { get; set; }// in inches, ie. 44", 54", etc.
-        public string Source { get; set; }//Joann
         public string Notes { get; set; }
         public int ItemsSold { get; set; }
         public int PurchaseCount { get; set; }
