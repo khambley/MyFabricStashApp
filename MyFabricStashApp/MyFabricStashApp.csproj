@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201807031440140_AddReceiptsToDBSet.Designer.cs">
       <DependentUpon>201807031440140_AddReceiptsToDBSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807041654512_TotalQtyChange.cs" />
+    <Compile Include="Migrations\201807041654512_TotalQtyChange.Designer.cs">
+      <DependentUpon>201807041654512_TotalQtyChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fabric.cs" />
@@ -310,6 +314,9 @@
     <Content Include="images\Doctor-Who-Exploding-Tardis-sm.jpg" />
     <Content Include="images\e266a049-b970-4405-adb9-9e2b3b1b1c49_Chicago-Cubs-v1-fabric.jpg" />
     <Content Include="images\f7dad9ad-63d3-4be4-8594-1e7ca92f02b8_Chicago-Cubs-v1-fabric.jpg" />
+    <Content Include="receipts\0_20160224-CVSArmour.jpg" />
+    <Content Include="receipts\0_Bowman%27s-Beach.jpg" />
+    <Content Include="receipts\0_speed-test-screenshot.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
@@ -402,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807031440140_AddReceiptsToDBSet.resx">
       <DependentUpon>201807031440140_AddReceiptsToDBSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041654512_TotalQtyChange.resx">
+      <DependentUpon>201807041654512_TotalQtyChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ReceiptImagePath)
+            <img src='~/receipts/@item.ReceiptImagePath' width="150"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReceiptDate)

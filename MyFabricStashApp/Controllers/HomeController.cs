@@ -50,7 +50,7 @@ namespace MyFabricStashApp.Controllers
                     Content = f.Content,
                     Design = f.Design,
                     Brand = f.Brand,
-                    Quantity = f.Quantity,
+                    TotalQty = f.TotalQty,
                     Width = f.Width,
                     Source = f.Source,
                     Notes = f.Notes,
