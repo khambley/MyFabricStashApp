@@ -4,10 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<script type="text/javascript">
+    $(function() {
+        $('.date-picker').datepicker();
+    })
+</script>
+<h2>Add New Receipt</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Receipts", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -43,7 +48,7 @@
             <label class="control-label col-md-2">Receipt Date</label>
             <div class="col-md-10">
                 @*TODO: Add DatePicker using JqueryUI*@
-                @Html.EditorFor(model => model.ReceiptDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReceiptDate, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.ReceiptDate, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -22,7 +22,9 @@ namespace MyFabricStashApp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                      "~/Scripts/jquery-ui-1.12.1.min.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
