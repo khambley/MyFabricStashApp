@@ -204,7 +204,9 @@
     <Compile Include="Controllers\FabricController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Controllers\ReceiptsController.cs" />
+    <Compile Include="Controllers\SourcesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +233,10 @@
     <Compile Include="Migrations\201807041955542_UpdateDbSet.cs" />
     <Compile Include="Migrations\201807041955542_UpdateDbSet.Designer.cs">
       <DependentUpon>201807041955542_UpdateDbSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807052156329_AddPTotal.cs" />
+    <Compile Include="Migrations\201807052156329_AddPTotal.Designer.cs">
+      <DependentUpon>201807052156329_AddPTotal.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -402,6 +408,11 @@
     <Content Include="Views\Receipts\Details.cshtml" />
     <Content Include="Views\Receipts\Edit.cshtml" />
     <Content Include="Views\Receipts\Index.cshtml" />
+    <Content Include="Views\Sources\Create.cshtml" />
+    <Content Include="Views\Sources\Delete.cshtml" />
+    <Content Include="Views\Sources\Details.cshtml" />
+    <Content Include="Views\Sources\Edit.cshtml" />
+    <Content Include="Views\Sources\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -427,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807041955542_UpdateDbSet.resx">
       <DependentUpon>201807041955542_UpdateDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807052156329_AddPTotal.resx">
+      <DependentUpon>201807052156329_AddPTotal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
