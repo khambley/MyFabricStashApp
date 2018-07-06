@@ -1,0 +1,82 @@
+﻿@model MyFabricStashApp.Models.Purchase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Purchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchasePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchasePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FabricId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FabricId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PurchaseId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

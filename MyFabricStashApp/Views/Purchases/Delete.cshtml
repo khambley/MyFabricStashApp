@@ -1,0 +1,88 @@
+﻿@model MyFabricStashApp.Models.Purchase
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Purchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchasePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchasePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FabricId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FabricId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiptId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiptId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

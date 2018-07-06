@@ -13,31 +13,10 @@ namespace MyFabricStashApp.Controllers
 
         public ActionResult Index(string searchTerm = null)
         {
-            //var model =
-            //    from f in _db.Fabrics
-            //    orderby f.ItemsSold descending
-            //    select new FabricListViewModel
-            //    {
-            //        FabricId = f.FabricId,
-            //        Name = f.Name,
-            //        MainCategory = f.MainCategory,
-            //        SubCategory1 = f.SubCategory1,
-            //        SubCategory2 = f.SubCategory2,
-            //        ImagePath = f.ImagePath,
-            //        Location = f.Location,
-            //        Type = f.Type,
-            //        Weight = f.Weight,
-            //        Content = f.Content,
-            //        Design = f.Design,
-            //        CurrentAmount = f.CurrentAmount,
-            //        Source = f.Source,
-            //        Notes = f.Notes,
-            //        ItemsSold = f.ItemsSold,
-            //        PurchaseCount = f.Purchases.Count()
-            //    };
 
             var model = _db.Fabrics
                 .OrderByDescending(f => f.ItemsSold)
+                .Take(3)
                 .Select(f => new FabricListViewModel
                 {
                     FabricId = f.FabricId,

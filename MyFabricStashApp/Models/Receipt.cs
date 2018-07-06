@@ -10,7 +10,9 @@ namespace MyFabricStashApp.Models
     {
         public int ReceiptId { get; set; }
         public string ReceiptImagePath { get; set; }
-        [DataType(DataType.Date)]
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}",ApplyFormatInEditMode = true)]
         public DateTime ReceiptDate { get; set; }
         public string Description { get; set; }
 

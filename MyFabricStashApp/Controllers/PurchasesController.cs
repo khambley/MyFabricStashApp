@@ -46,7 +46,7 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
+        public ActionResult Create([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,PurchaseTotal,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
+        public ActionResult Edit([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,PurchaseTotal,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
         {
             if (ModelState.IsValid)
             {

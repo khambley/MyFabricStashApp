@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyFabricStashApp.Models.Purchase>
+
+@{
+    ViewBag.Title = "Purchases List";
+}
+
+<h2>Purchases List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FabricId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchasePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FabricId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchasePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SourceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PurchaseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PurchaseId })
+        </td>
+    </tr>
+}
+
+</table>

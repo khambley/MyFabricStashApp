@@ -124,7 +124,7 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,TotalQty,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -162,7 +162,7 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,Quantity,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "FabricId,MainCategory,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,TotalQty,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
         {
             //if (file != null) { 
             //    var filename = Path.GetFileName(file.FileName);
