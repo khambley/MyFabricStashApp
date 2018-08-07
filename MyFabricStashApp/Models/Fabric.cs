@@ -9,7 +9,6 @@ namespace MyFabricStashApp.Models
     public class Fabric
     {
         public int FabricId { get; set; } //Item Number
-
         public int MainCategoryId { get; set; }
         public virtual MainCategory MainCategory { get; set; }
         public int SubCategory1Id { get; set; }

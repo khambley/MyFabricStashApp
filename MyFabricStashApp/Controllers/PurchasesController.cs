@@ -17,7 +17,25 @@ namespace MyFabricStashApp.Controllers
         // GET: Purchases
         public ActionResult Index()
         {
-            return View(db.Purchases.ToList());
+            //var orderedList = db.Purchases.Include(c => c.Fabrics)
+            //    .OrderBy(n => n.Name).ToList();
+            var orderedList = db.Purchases.Include(f => f.Fabric)
+                .Select(p => new PurchasesListViewModel
+                {
+                    PurchaseId = p.PurchaseId,
+                    PurchaseDate = p.PurchaseDate,
+                    PurchaseQuantity = p.PurchaseQuantity,
+                    PurchasePrice = p.PurchasePrice,
+                    PurchaseTotal = p.PurchaseTotal,
+                    FabricId = p.FabricId,
+                    FabricName = p.Fabric.Name,
+                    FabricImagePath = p.Fabric.ImagePath,
+                    ReceiptId = p.ReceiptId,
+                    SourceId = p.SourceId,
+                    SourceName = p.Source.SourceName
+                });
+
+            return View(orderedList);
         }
 
         // GET: Purchases/Details/5
@@ -38,6 +56,10 @@ namespace MyFabricStashApp.Controllers
         // GET: Purchases/Create
         public ActionResult Create()
         {
+            List<Fabric> lstFabrics = db.Fabrics.ToList();
+
+            ViewBag.FabricId = new SelectList(lstFabrics, "FabricId", "Name", "FabricId");
+
             return View();
         }
 
@@ -56,6 +78,13 @@ namespace MyFabricStashApp.Controllers
             }
 
             return View(purchase);
+        }
+        public JsonResult GetFabricsList()
+        {
+            var result = db.Fabrics
+                .OrderBy(n => n.Name)
+                .ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Purchases/Edit/5
