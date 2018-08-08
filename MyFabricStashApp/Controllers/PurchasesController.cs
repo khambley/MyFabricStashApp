@@ -37,7 +37,15 @@ namespace MyFabricStashApp.Controllers
 
             return View(orderedList);
         }
-
+        public ActionResult FabricPurchases([Bind(Prefix="id")]int fabricId)
+        {
+            var fabric = db.Fabrics.Find(fabricId);
+            if (fabric != null)
+            {
+                return View(fabric);
+            }
+            return HttpNotFound();
+        }
         // GET: Purchases/Details/5
         public ActionResult Details(int? id)
         {
@@ -61,6 +69,40 @@ namespace MyFabricStashApp.Controllers
             ViewBag.FabricId = new SelectList(lstFabrics, "FabricId", "Name", "FabricId");
 
             return View();
+        }
+        [HttpGet]
+        public ActionResult CreateFabricPurchase(int id)
+        {
+            Fabric fabric = db.Fabrics.Find(id);
+            if (fabric == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.FabricName = fabric.Name;
+            ViewBag.sFabricId = fabric.FabricId;
+            ViewBag.FabricId = id;
+
+            List<Receipt> lstReceipts = db.Receipts.ToList();
+
+            ViewBag.ReceiptId = new SelectList(lstReceipts, "ReceiptId", "ReceiptImagePath", "ReceiptId");
+
+            List<Source> lstSources = db.Sources.ToList();
+
+            ViewBag.SourceId = new SelectList(lstSources, "SourceId", "SourceName", "SourceId");
+
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateFabricPurchase([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,PurchaseTotal,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Purchases.Add(purchase);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Fabric", new { id = purchase.FabricId });
+            }
+            return View(purchase);
         }
 
         // POST: Purchases/Create

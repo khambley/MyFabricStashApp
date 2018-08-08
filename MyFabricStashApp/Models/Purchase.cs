@@ -16,7 +16,7 @@ namespace MyFabricStashApp.Models
         public int PurchaseQuantity { get; set; }
         public double PurchasePrice { get; set; }
         public double PurchaseTotal { get; set; }
-
+        
         public int FabricId { get; set; }
         public virtual Fabric Fabric { get; set; }
 

@@ -1,26 +1,25 @@
 ﻿@model MyFabricStashApp.Models.Purchase
 
 @{
-    ViewBag.Title = "Create New Purchase";
+    ViewBag.Title = "CreateFabricPurchase";
 }
 <script type="text/javascript">
     $(function () {
         $('.date-picker').datepicker();
     })
 </script>
-<h2>Add New Purchase</h2>
-
-
+<h2>CreateFabricPurchase</h2>
+<!--This will post back to the same form it came from <form action="/Purchases/Create?Id=3" method="post">-->
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
- 
+        <h4>Add New Purchase for Fabric: </h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <span class = "control-label col-md-2">Date</span>
+            <span class="control-label col-md-2">Date: </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
@@ -28,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <span class = "control-label col-md-2">Qty Purchased: </span>
+            <span class="control-label col-md-2">Qty Purchased: </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PurchaseQuantity, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PurchaseQuantity, "", new { @class = "text-danger" })
@@ -36,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            <span class="control-label col-md-2">Price per yd: </span>
+            <span class="control-label col-md-2">Price: </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PurchasePrice, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PurchasePrice, "", new { @class = "text-danger" })
@@ -44,7 +43,7 @@
         </div>
 
         <div class="form-group">
-           <span class="control-label col-md-2">Total Price: </span>
+            <span class="control-label col-md-2">Total: </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PurchaseTotal, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PurchaseTotal, "", new { @class = "text-danger" })
@@ -52,27 +51,27 @@
         </div>
 
         <div class="form-group">
-           
-            <span class="control-label col-md-2">Fabric Name: </span>
+            @Html.LabelFor(model => model.FabricId, "FabricId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("FabricId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DisplayText("FabricName")<br />
+                
+                @Html.TextBoxFor(model => model.FabricId, new { @Value = ViewBag.FabricId })
                 @Html.ValidationMessageFor(model => model.FabricId, "", new { @class = "text-danger" })
             </div>
-           
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ReceiptId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ReceiptId, "ReceiptId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReceiptId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("ReceiptId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ReceiptId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SourceId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SourceId, "SourceId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SourceId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("SourceId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SourceId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -96,7 +95,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

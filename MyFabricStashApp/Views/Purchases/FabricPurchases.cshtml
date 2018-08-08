@@ -1,0 +1,14 @@
+﻿@model MyFabricStashApp.Models.Fabric
+
+@{
+    ViewBag.Title = "Fabric Purchases";
+}
+
+<h2>Purchases For @Model.Name</h2>
+
+@Html.Partial("_Purchases", Model.Purchases)
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+

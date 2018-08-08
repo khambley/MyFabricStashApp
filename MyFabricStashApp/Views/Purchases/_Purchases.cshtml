@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MyFabricStashApp.Models.Purchase>
+<table class="table">
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Receipt
+        </th>
+        <th>
+            Source
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Total Price
+        </th>
+        <th>
+            Notes
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receipt.ReceiptImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Source.SourceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchasePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PurchaseId })
+        </td>
+    </tr>
+    }
+
+</table>
+

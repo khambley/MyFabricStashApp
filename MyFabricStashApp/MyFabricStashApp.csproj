@@ -425,6 +425,9 @@
     <Content Include="Views\Purchases\Details.cshtml" />
     <Content Include="Views\Purchases\Edit.cshtml" />
     <Content Include="Views\Purchases\Index.cshtml" />
+    <Content Include="Views\Purchases\FabricPurchases.cshtml" />
+    <Content Include="Views\Purchases\_Purchases.cshtml" />
+    <Content Include="Views\Purchases\CreateFabricPurchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

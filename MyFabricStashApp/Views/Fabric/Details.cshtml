@@ -19,11 +19,18 @@
         Location: @Model.Location<br />
         Sold to Date: <span style="color: red; font-weight: bold">@Model.ItemsSold</span><br />
         Purchases:<br />
-        @Html.ActionLink("Edit", "Edit", new { id = Model.FabricId })
+        @Html.ActionLink("Edit Details", "Edit", new { id = Model.FabricId })
+        <!--set htmlAttributes to null to pick correct overload-->
+        @*@Html.ActionLink("Purchases", "FabricPurchases", "Purchases", new { id = Model.FabricId}, null)*@
         
     </div>
+    <br />
+    <div>
+        <h2>Purchases For @Model.Name</h2>
+        @Html.ActionLink("Create New", "CreateFabricPurchase", "Purchases", new { id = Model.FabricId}, null)
+        @Html.Partial("~/Views/Purchases/_Purchases.cshtml", Model.Purchases.OrderByDescending(d => d.PurchaseDate))
+    </div>
     <p>
-        
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Fabrics List", "Index")
     </p>
 </div>
