@@ -1,4 +1,4 @@
-﻿@model MyFabricStashApp.Models.Receipt
+@model MyFabricStashApp.Models.Receipt
 
 @{
     ViewBag.Title = "Create";
@@ -29,9 +29,7 @@
                 <img id="user_img" width="150" />
             </div>
             <br />
-
-            <input type="file" title="Upload Image" id="file" name="file" onchange="show(this)" required />
-            
+            <input type="file" title="Upload Image" id="file" name="file" onchange="show(this)" />
             @Html.ValidationMessageFor(model => model.ReceiptImagePath, "", new { @class = "text-danger" })
             <script type="text/javascript">
                 function show(input) {
@@ -55,10 +53,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label class = "control-label col-md-2">Source </label>
+        @Html.LabelFor(model => model.SourceId, "SourceId", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("SourceId", null, htmlAttributes: new { @class = "form-control" })
-            @*@Html.EditorFor(model => model.SourceId, new { htmlAttributes = new { @class = "form-control" } })*@
+            @*@Html.DropDownList("SourceId", null, htmlAttributes: new { @class = "form-control" })*@
+            @Html.EditorFor(model => model.SourceId, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SourceId, "", new { @class = "text-danger" })
         </div>
     </div>

@@ -37,7 +37,7 @@ namespace MyFabricStashApp.Controllers
 
             return View(orderedList);
         }
-        public ActionResult FabricPurchases([Bind(Prefix="id")]int fabricId)
+        public ActionResult FabricPurchases([Bind(Prefix="id")]int? fabricId)
         {
             var fabric = db.Fabrics.Find(fabricId);
             if (fabric != null)
@@ -79,23 +79,28 @@ namespace MyFabricStashApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.FabricName = fabric.Name;
+            ViewBag.FabricImage = fabric.ImagePath;
             ViewBag.sFabricId = fabric.FabricId;
             ViewBag.FabricId = id;
 
             List<Receipt> lstReceipts = db.Receipts.ToList();
 
-            ViewBag.ReceiptId = new SelectList(lstReceipts, "ReceiptId", "ReceiptImagePath", "ReceiptId");
+            ViewBag.ReceiptId = new SelectList(lstReceipts, "ReceiptId", "ReceiptImagePath", "RecepitId");
+            //List<Receipt> lstReceipts = db.Receipts.ToList();
 
-            List<Source> lstSources = db.Sources.ToList();
+            //ViewBag.ReceiptId = new SelectList(lstReceipts, "ReceiptId", "ReceiptId", "ReceiptId");
 
-            ViewBag.SourceId = new SelectList(lstSources, "SourceId", "SourceName", "SourceId");
+            //List<Source> lstSources = db.Sources.ToList();
+
+            //ViewBag.SourceId = new SelectList(lstSources, "SourceId", "SourceName", "SourceId");
 
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateFabricPurchase([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,PurchaseTotal,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
+        public ActionResult CreateFabricPurchase([Bind(Include = "PurchaseId,PurchaseDate,PurchaseQuantity,PurchasePrice,FabricId,ReceiptId,SourceId,Notes")] Purchase purchase)
         {
+            purchase.PurchaseTotal = purchase.PurchaseQuantity * purchase.PurchasePrice;
             if (ModelState.IsValid)
             {
                 db.Purchases.Add(purchase);

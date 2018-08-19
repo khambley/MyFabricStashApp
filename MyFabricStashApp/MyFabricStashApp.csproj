@@ -242,6 +242,14 @@
     <Compile Include="Migrations\201808062357209_PurchasesListViewModel.Designer.cs">
       <DependentUpon>201808062357209_PurchasesListViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808111903202_AddReceiptNumber.cs" />
+    <Compile Include="Migrations\201808111903202_AddReceiptNumber.Designer.cs">
+      <DependentUpon>201808111903202_AddReceiptNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808182024571_AddedVirtualSourceToReceipts.cs" />
+    <Compile Include="Migrations\201808182024571_AddedVirtualSourceToReceipts.Designer.cs">
+      <DependentUpon>201808182024571_AddedVirtualSourceToReceipts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fabric.cs" />
@@ -253,6 +261,7 @@
     <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\PurchasesListViewModel.cs" />
     <Compile Include="Models\Receipt.cs" />
+    <Compile Include="Models\ReceiptsListViewModel.cs" />
     <Compile Include="Models\Source.cs" />
     <Compile Include="Models\SubCategory1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -459,6 +468,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808062357209_PurchasesListViewModel.resx">
       <DependentUpon>201808062357209_PurchasesListViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808111903202_AddReceiptNumber.resx">
+      <DependentUpon>201808111903202_AddReceiptNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808182024571_AddedVirtualSourceToReceipts.resx">
+      <DependentUpon>201808182024571_AddedVirtualSourceToReceipts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

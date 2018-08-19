@@ -18,7 +18,19 @@ namespace MyFabricStashApp.Controllers
         // GET: Receipts
         public ActionResult Index()
         {
-            return View(db.Receipts.ToList());
+            var orderedList = db.Receipts.Include(s => s.Source)
+                .OrderByDescending(d => d.ReceiptDate)
+                .Select(r => new ReceiptsListViewModel
+                {
+                    ReceiptId = r.ReceiptId,
+                    ReceiptNumber = r.ReceiptNumber,
+                    SourceId = r.SourceId,
+                    SourceName = r.Source.SourceName,
+                    ReceiptImagePath = r.ReceiptImagePath,
+                    ReceiptDate = r.ReceiptDate,
+                    Description = r.Description
+                });
+            return View(orderedList);
         }
 
         // GET: Receipts/Details/5
@@ -39,6 +51,12 @@ namespace MyFabricStashApp.Controllers
         // GET: Receipts/Create
         public ActionResult Create()
         {
+            List<Source> lstSources = db.Sources.ToList();
+
+            lstSources.Insert(0, new Source { SourceId = 0, SourceName = "--Select Source--" });
+
+            ViewBag.SourceId = new SelectList(lstSources, "SourceId", "SourceName");
+
             return View();
         }
 
@@ -47,17 +65,24 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReceiptId,ReceiptImagePath,ReceiptDate,Description")] Receipt receipt, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "ReceiptId,ReceiptImagePath,SourceId,ReceiptDate,Description")] Receipt receipt, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                var filename = Path.GetFileName(file.FileName);
-                string receiptId = receipt.ReceiptId.ToString();
-                string myfile = receiptId + "_" + filename;
-                var path = Path.Combine(Server.MapPath("~/receipts"), myfile);
-                receipt.ReceiptImagePath = myfile;
-                file.SaveAs(path);
+                if (file != null)
+                {
+                    var filename = Path.GetFileName(file.FileName);
+                    string receiptId = receipt.ReceiptId.ToString();
+                    string myfile = receiptId + "_" + filename;
+                    var path = Path.Combine(Server.MapPath("~/receipts"), myfile);
+                    receipt.ReceiptImagePath = myfile;
+                    file.SaveAs(path);
+                }
+                
                 db.Receipts.Add(receipt);
+                db.SaveChanges();
+                receipt.ReceiptNumber = "REC0" + receipt.ReceiptId.ToString() + receipt.ReceiptDate.ToString("yyyyMMdd") + receipt.SourceId;
+                db.Entry(receipt).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

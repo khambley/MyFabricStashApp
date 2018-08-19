@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyFabricStashApp.Models.Receipt>
+﻿@model IEnumerable<MyFabricStashApp.Models.ReceiptsListViewModel>
 
 @{
     ViewBag.Title = "Receipts List";
@@ -15,7 +15,13 @@
             Receipt Image
         </th>
         <th>
+            Receipt Number
+        </th>
+        <th>
             Date
+        </th>
+        <th>
+            Source
         </th>
         <th>
             Description
@@ -26,18 +32,24 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src='~/receipts/@item.ReceiptImagePath' width="150"/>
+            <img src='~/receipts/@item.ReceiptImagePath' width="150" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReceiptDate)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.SourceName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReceiptId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReceiptId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReceiptId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ReceiptId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ReceiptId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ReceiptId })
         </td>
     </tr>
 }
