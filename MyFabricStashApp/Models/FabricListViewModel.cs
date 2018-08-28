@@ -16,7 +16,10 @@ namespace MyFabricStashApp.Models
         public string SubCategory1Name { get; set; }
 
         public string Name { get; set; }
+
         public string ImagePath { get; set; }
+        public string ImagePath2 { get; set; }
+
         public string Location { get; set; }
         public string Type { get; set; } //Knit, Woven, Voile, Interfacing, Denim, Suiting, etc.
         public string Weight { get; set; }//Lightweight, Medium, Heavy

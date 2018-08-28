@@ -19,6 +19,12 @@
             <a href="#">
                 <img class="media-object" src="/images/@item.ImagePath" width="100" alt="thumbnail" />
             </a>
+            @if (item.ImagePath2 != null) { 
+                <p></p>
+                <a href="#">
+                    <img class="media-object" src="/images/@item.ImagePath2" width="100" alt="thumbnail" />
+                </a>
+            }
         </div>
         <div class="media-body">
             <h4 class="media-heading">@item.MainCategoryName / @item.SubCategory1Name </h4>

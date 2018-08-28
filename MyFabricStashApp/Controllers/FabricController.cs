@@ -31,6 +31,7 @@ namespace MyFabricStashApp.Controllers
                     SubCategory1Id = f.SubCategory1Id,
                     SubCategory1Name = f.SubCategory1.Name,
                     ImagePath = f.ImagePath,
+                    ImagePath2 = f.ImagePath2,
                     Location = f.Location,
                     Type = f.Type,
                     Weight = f.Weight,
@@ -124,16 +125,28 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,Location,Type,Weight,Content,Design,Brand,TotalQty,Width,Source,Notes,ItemsSold")] Fabric fabric, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,ImagePath2,Location,Type,Weight,Content,Design,Brand,TotalQty,Width,Source,Notes,ItemsSold")] Fabric fabric, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
-                var filename = Path.GetFileName(file.FileName);
-                string fabricId = fabric.FabricId.ToString();
-                string myfile = fabricId + "_" + filename;
-                var path = Path.Combine(Server.MapPath("~/images"), myfile);
-                fabric.ImagePath = myfile;
-                file.SaveAs(path);
+                //foreach(var file in files) { 
+                //    var filename = Path.GetFileName(file.FileName);
+                //    //string fabricId = fabric.FabricId.ToString();
+                //    //string myfile = fabricId + "_" + filename;
+                //    var path = Path.Combine(Server.MapPath("~/images"), filename);
+                //    fabric.ImagePath = filename;
+                //    file.SaveAs(path);
+                //}
+                var filename1 = Path.GetFileName(files.ElementAt(0).FileName);
+                var path1 = Path.Combine(Server.MapPath("~/images"), filename1);
+                fabric.ImagePath = filename1;
+                files.ElementAt(0).SaveAs(path1);
+
+                var filename2 = Path.GetFileName(files.ElementAt(1).FileName);
+                var path2 = Path.Combine(Server.MapPath("~/images"), filename2);
+                fabric.ImagePath2 = filename2;
+                files.ElementAt(1).SaveAs(path2);
+
                 db.Fabrics.Add(fabric);
                 db.SaveChanges();
                 return RedirectToAction("Index");

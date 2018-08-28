@@ -17,22 +17,26 @@
         <label class="control-label col-md-2">Thumbnail</label>
         <div class="col-md-10">
             <div>
-                <img id="user_img" width="100" />
+                <img id="user_img" width="100" /> <img id="user_img2" width="100" />
             </div>
             <br />
-            <input type="file" title="Upload Image" id="file" name="file" onchange="show(this)" />
+            <input type="file" title="Upload Image" name="files" id="file1" onchange="show(this)" />
             @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+            <input type="file" title="Upload Image 2" name="files" id="file2" onchange="show(this)" />
+            @Html.ValidationMessageFor(model => model.ImagePath2, "", new { @class = "text-danger" })
             <script type="text/javascript">
                 function show(input) {
                     if (input.files && input.files[0]) {
                         var filereader = new FileReader();
                         filereader.onload = function (e) {
                             $('#user_img').attr('src', e.target.result);
+                            $('#user_img2').attr('src', e.target.result);
                         }
                         filereader.readAsDataURL(input.files[0]);
                     }
                 }
             </script>
+
         </div>
     </div>
     <div class="form-group">
