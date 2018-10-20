@@ -168,6 +168,15 @@ namespace MyFabricStashApp.Controllers
             {
                 return HttpNotFound();
             }
+            List<MainCategory> lstMainCategories = db.MainCategories.ToList();
+
+            lstMainCategories.Insert(0, new MainCategory { MainCategoryId = 0, Name = "--Select Category--" });
+
+            List<SubCategory1> lstSubCategories1 = new List<SubCategory1>();
+
+            ViewBag.MainCategoryId = new SelectList(lstMainCategories, "MainCategoryId", "Name");
+
+            ViewBag.SubCategory1Id = new SelectList(lstSubCategories1, "SubCategory1Id", "Name");
             return View(fabric);
         }
 
@@ -188,12 +197,18 @@ namespace MyFabricStashApp.Controllers
             //}
             if (ModelState.IsValid)
             {
-                var filename = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/images"), filename);
-                fabric.ImagePath = filename;
+
+                if(file != null)
+                {
+                    var filename = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/images"), filename);
+                    fabric.ImagePath = filename;
+                    file.SaveAs(path);
+                }
+                
                 db.Entry(fabric).State = EntityState.Modified;
                 db.SaveChanges();
-                file.SaveAs(path);
+                
                 return RedirectToAction("Index");
             }
             return View(fabric);
