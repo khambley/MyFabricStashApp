@@ -3,7 +3,7 @@
 <script src="~/Scripts/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        if ($("#MainCategoryId").val() == '0') {
+        if ($("#MainCategoryId").val() === '0') {
             var subcategory1DefaultValue = "<option value='0'>--Select a main category first--</option>";
             $("#SubCategory1Id").html(subcategory1DefaultValue).show();
         }

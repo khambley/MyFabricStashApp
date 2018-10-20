@@ -335,7 +335,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
-    <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\dev.myfabricstash.cc.pubxml" />
     <None Include="Properties\PublishProfiles\MyFabricStashApp20180504062800 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MYFABRICSTASHDEV.pubxml" />
     <Content Include="images\0e15673e-336e-445b-be99-dba3cb7c22e0_Chicago-Cubs-v1-fabric.jpg" />
