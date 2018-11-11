@@ -129,14 +129,6 @@ namespace MyFabricStashApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                //foreach(var file in files) { 
-                //    var filename = Path.GetFileName(file.FileName);
-                //    //string fabricId = fabric.FabricId.ToString();
-                //    //string myfile = fabricId + "_" + filename;
-                //    var path = Path.Combine(Server.MapPath("~/images"), filename);
-                //    fabric.ImagePath = filename;
-                //    file.SaveAs(path);
-                //}
                 var filename1 = Path.GetFileName(files.ElementAt(0).FileName);
                 var path1 = Path.Combine(Server.MapPath("~/images"), filename1);
                 fabric.ImagePath = filename1;
@@ -188,24 +180,9 @@ namespace MyFabricStashApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,ImagePath2,Location,Type,Weight,Content,Design,Brand,TotalQty,Width,Source,Notes,ItemsSold")] Fabric fabric, IEnumerable<HttpPostedFileBase> files)
         {
-            //if (file != null) { 
-            //    var filename = Path.GetFileName(file.FileName);
-            //    var path = Path.Combine(Server.MapPath("~/images"), filename);
-            //    fabric.ImagePath = path;
-            //    db.Fabrics.Add(fabric);
-            //    db.SaveChanges();
-            //    file.SaveAs(path);
-            //}
             if (ModelState.IsValid)
             {
 
-                //if(file != null)
-                //{
-                //    var filename = Path.GetFileName(file.FileName);
-                //    var path = Path.Combine(Server.MapPath("~/images"), filename);
-                //    fabric.ImagePath = filename;
-                //    file.SaveAs(path);
-                //}
                 var filename1 = Path.GetFileName(files.ElementAt(0).FileName);
                 var path1 = Path.Combine(Server.MapPath("~/images"), filename1);
                 fabric.ImagePath = filename1;
