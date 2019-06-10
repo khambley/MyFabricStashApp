@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -7,8 +8,10 @@ using System.Web;
 namespace MyFabricStashApp.Models
 {
     public class Fabric
-    {
-        public int FabricId { get; set; } //Item Number
+    {   
+        public int FabricId { get; set; } 
+        public string ItemNumber { get; set; } //Item Number
+
         public int MainCategoryId { get; set; }
         public virtual MainCategory MainCategory { get; set; }
         public int SubCategory1Id { get; set; }
@@ -24,11 +27,17 @@ namespace MyFabricStashApp.Models
         public string Content { get; set; }//Cotton, Polyester, Nylon, etc.
         public string Design { get; set; }//Marvel Comics, Amy Butler, etc.
         public string Brand { get; set; } //Springs Creative Products, Free Spirit, Robert Kaufman, etc.
-        public double TotalQty { get; set; }//.25 yd, .50 yd, .75 yd, 1.0 yd, etc.
+
+        public string Source { get; set; }
+
+
+        public int AddQuantity { get; set; }
+        public int MinusQuantity { get; set; }
+
+        public double TotalInches { get; set; }//.25 yd, .50 yd, .75 yd, 1.0 yd, etc.
         public int Width { get; set; }// in inches, ie. 44", 54", etc.
         public string Notes { get; set; }
         public List<string> Tags { get; set; }
-        public int ItemsSold { get; set; }
         public virtual List<Purchase> Purchases { get; set; }
     }
 }

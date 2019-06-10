@@ -30,10 +30,8 @@
         <div class="media-body">
             <h4 class="media-heading">@item.MainCategoryName / @item.SubCategory1Name </h4>
             Name: @item.Name<br />
-            Total Quantity on hand: @item.TotalQty.ToString() yd(s)<br />
+            Total Quantity on hand: @item.TotalInches.ToString() inches<br />
             Item Location: @item.Location<br />
-            Items Sold to Date: <span style="color: red; font-weight: bold">@item.ItemsSold</span><br />
-            Purchases: @item.PurchaseCount<br />
             @Html.ActionLink("Edit", "Edit", new { id = item.FabricId }) |
             @Html.ActionLink("Details", "Details", new { id = item.FabricId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.FabricId })

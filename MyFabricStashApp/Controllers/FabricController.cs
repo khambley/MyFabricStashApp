@@ -20,11 +20,11 @@ namespace MyFabricStashApp.Controllers
         public ActionResult Index(string searchTerm = null)
         {
             var model = db.Fabrics.Include(f => f.MainCategory).Include(f => f.SubCategory1)
-                .OrderByDescending(f => f.ItemsSold)
                 .Where(f => searchTerm == null || f.Name.StartsWith(searchTerm))
                 .Select(f => new FabricListViewModel
                 {
                     FabricId = f.FabricId,
+                    ItemNumber = f.ItemNumber,
                     Name = f.Name,
                     MainCategoryId = f.MainCategoryId,
                     MainCategoryName = f.MainCategory.Name,
@@ -38,10 +38,10 @@ namespace MyFabricStashApp.Controllers
                     Content = f.Content,
                     Design = f.Design,
                     Brand = f.Brand,
-                    TotalQty = f.TotalQty,
+                    Source = f.Source,
+                    TotalInches = f.TotalInches,
                     Width = f.Width,
                     Notes = f.Notes,
-                    ItemsSold = f.ItemsSold,
                     PurchaseCount = f.Purchases.Count()
                 });
             return View(model);
@@ -68,7 +68,7 @@ namespace MyFabricStashApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Fabric fabric = db.Fabrics.Find(id);
-
+            
             
             if (fabric == null)
             {
@@ -125,7 +125,7 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,ImagePath2,Location,Type,Weight,Content,Design,Brand,Width,Source,Notes,ItemsSold")] Fabric fabric, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create([Bind(Include = "FabricId,ItemNumber,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,ImagePath2,Location,Type,Weight,Content,Design,Brand,Width,TotalInches,Source,Notes")] Fabric fabric, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
@@ -133,18 +133,25 @@ namespace MyFabricStashApp.Controllers
                 var path1 = Path.Combine(Server.MapPath("~/images"), filename1);
                 fabric.ImagePath = filename1;
                 files.ElementAt(0).SaveAs(path1);
-                if (files.ElementAt(1) != null) { 
+                //if (files.ElementAt(1) != null) { 
 
-                    var filename2 = Path.GetFileName(files.ElementAt(1).FileName);
-                    var path2 = Path.Combine(Server.MapPath("~/images"), filename2);
-                    fabric.ImagePath2 = filename2;
-                    files.ElementAt(1).SaveAs(path2);
-                }
+                //    var filename2 = Path.GetFileName(files.ElementAt(1).FileName);
+                //    var path2 = Path.Combine(Server.MapPath("~/images"), filename2);
+                //    fabric.ImagePath2 = filename2;
+                //    files.ElementAt(1).SaveAs(path2);
+                //}
+                Guid theGuid1 = Guid.NewGuid();
+                Guid theGuid2 = Guid.NewGuid();
+                string guidString1;
+                string guidString2;
+                guidString1 = theGuid1.ToString().Replace("-", "").Substring(0, 4).ToUpper();
+                guidString2 = theGuid2.ToString().Replace("-", "").Substring(0, 1).ToUpper();
+                fabric.ItemNumber = guidString1 + "-" + guidString2;
+
                 db.Fabrics.Add(fabric);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(fabric);
         }
 
@@ -161,15 +168,19 @@ namespace MyFabricStashApp.Controllers
             {
                 return HttpNotFound();
             }
+            
             List<MainCategory> lstMainCategories = db.MainCategories.ToList();
 
             lstMainCategories.Insert(0, new MainCategory { MainCategoryId = 0, Name = "--Select Category--" });
 
             List<SubCategory1> lstSubCategories1 = new List<SubCategory1>();
 
-            ViewBag.MainCategoryId = new SelectList(lstMainCategories, "MainCategoryId", "Name");
+            ViewBag.MainCategoryId = new SelectList(lstMainCategories, "MainCategoryId", "Name", fabric.MainCategoryId);
+            lstSubCategories1 = db.SubCategories1.OrderBy(n => n.Name).Where(s => s.MainCategoryId == fabric.MainCategoryId).ToList();
 
             ViewBag.SubCategory1Id = new SelectList(lstSubCategories1, "SubCategory1Id", "Name");
+
+            fabric.AddQuantity = 0;
             return View(fabric);
         }
 
@@ -178,23 +189,28 @@ namespace MyFabricStashApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FabricId,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,ImagePath2,Location,Type,Weight,Content,Design,Brand,TotalQty,Width,Source,Notes,ItemsSold")] Fabric fabric, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Edit([Bind(Include = "FabricId,ItemNumber,MainCategory,MainCategoryId, SubCategory1Id,SubCategory1,SubCategory2,Name,ImagePath,ImagePath2,Location,Type,Weight,Content,Design,Brand,AddQuantity,MinusQuantity,TotalInches,Width,Source,Notes")] Fabric fabric, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-
-                var filename1 = Path.GetFileName(files.ElementAt(0).FileName);
-                var path1 = Path.Combine(Server.MapPath("~/images"), filename1);
-                fabric.ImagePath = filename1;
-                files.ElementAt(0).SaveAs(path1);
-                if (files.ElementAt(1) != null)
+                if(file != null && file.ContentLength > 0)
                 {
-
-                    var filename2 = Path.GetFileName(files.ElementAt(1).FileName);
-                    var path2 = Path.Combine(Server.MapPath("~/images"), filename2);
-                    fabric.ImagePath2 = filename2;
-                    files.ElementAt(1).SaveAs(path2);
+                    var filename1 = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/images"), filename1);
+                    fabric.ImagePath = filename1;
+                    file.SaveAs(path);
                 }
+                else
+                {
+                    fabric.ImagePath = db.Fabrics.AsNoTracking().Single(x => x.FabricId == fabric.FabricId).ImagePath;
+                }
+
+                //if (fabric.TotalInches >= 0)
+                //{
+                //    fabric.TotalInches = fabric.TotalInches + (fabric.AddQuantity / 36);
+
+                //}
+                //if (fabric.TotalQty >= fabric.MinusQuantity)
                 db.Entry(fabric).State = EntityState.Modified;
                 db.SaveChanges();
                 

@@ -1,0 +1,162 @@
+﻿@model MyFabricStashApp.Models.Fabric
+
+@{
+    ViewBag.Title = "Edit";
+}
+       
+@using (Html.BeginForm("Edit", "Fabric", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Fabric: @Model.Name</h4>
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.FabricId)
+        <div class="form-group">
+            <div class="col-md-10">
+                <div>
+                    @if (Model.ImagePath != null)
+                    {
+                        <img id="user_img" src="/images/@Model.ImagePath" width="100" />
+                        if (Model.ImagePath2 != null) { 
+                        <img id="user_img2" src="/images/@Model.ImagePath2" width="100" />
+                        }
+                    }
+                    else
+                    {
+                        <img id="user_img" width="100" /> <img id="user_img2" width="100" />
+                    }
+
+                </div>
+                <br />
+                <input type="file" title="Upload Image" name="files" id="file1" onchange="show(this)" />
+                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                <input type="file" title="Upload Image 2" name="files" id="file2" onchange="show(this)" />
+                @Html.ValidationMessageFor(model => model.ImagePath2, "", new { @class = "text-danger" })
+                <script type="text/javascript">
+                    function show(input) {
+                        if (input.files && input.files[0]) {
+                            var filereader = new FileReader();
+                            filereader.onload = function (e) {
+                                $('#user_img').attr('src', e.target.result);
+                                $('#user_img2').attr('src', e.target.result);
+                            };
+                            filereader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                </script>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Main Category</label>
+            <div class="col-md-2">
+                <h4>@Model.MainCategory.Name</h4>
+                @Html.Partial("_ChooseCategory")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Sub Category</label>
+            <div class="col-md-10">
+                <h4>@Model.SubCategory1.Name</h4>
+                @Html.DropDownList("SubCategory1Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubCategory1Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Design, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Design, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Design, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span class="control-label col-md-2">Current Qty</span>
+            <div class="col-md-10">
+
+                @*@Html.EditorFor(model => model.TotalQty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalQty, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

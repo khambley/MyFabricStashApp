@@ -21,9 +21,8 @@
                 <img src="~/images/@item.ImagePath" alt="" width="200" />
                 <div class="caption">
                     <h3>@item.Name </h3>
-                    Quantity: @item.TotalQty yd(s)<br />
+                    Quantity: @item.TotalInches inches<br />
                     Item Location: @item.Location<br />
-                    Items Sold to Date: <span style="color: red; font-weight: bold">@item.ItemsSold</span><br />
                     Purchases: @item.PurchaseCount<br />
                     @*<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>*@
                     @Html.ActionLink("See Details >>", "Details", "Fabric", new { id = item.FabricId }, null)

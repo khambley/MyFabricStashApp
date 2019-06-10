@@ -15,7 +15,6 @@ namespace MyFabricStashApp.Controllers
         {
 
             var model = _db.Fabrics
-                .OrderByDescending(f => f.ItemsSold)
                 .Take(3)
                 .Select(f => new FabricListViewModel
                 {
@@ -29,10 +28,9 @@ namespace MyFabricStashApp.Controllers
                     Content = f.Content,
                     Design = f.Design,
                     Brand = f.Brand,
-                    TotalQty = f.TotalQty,
+                    TotalInches = f.TotalInches,
                     Width = f.Width,
                     Notes = f.Notes,
-                    ItemsSold = f.ItemsSold,
                     PurchaseCount = f.Purchases.Count()
                 });
 

@@ -254,6 +254,22 @@
     <Compile Include="Migrations\201808280101439_AddedImagePath2.Designer.cs">
       <DependentUpon>201808280101439_AddedImagePath2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811120049038_RemovedItemsSold.cs" />
+    <Compile Include="Migrations\201811120049038_RemovedItemsSold.Designer.cs">
+      <DependentUpon>201811120049038_RemovedItemsSold.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812012116166_AddMinusQuantity.cs" />
+    <Compile Include="Migrations\201812012116166_AddMinusQuantity.Designer.cs">
+      <DependentUpon>201812012116166_AddMinusQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906081539552_TotalInchesChange.cs" />
+    <Compile Include="Migrations\201906081539552_TotalInchesChange.Designer.cs">
+      <DependentUpon>201906081539552_TotalInchesChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906081809219_AddedSourceToCreateFabric.cs" />
+    <Compile Include="Migrations\201906081809219_AddedSourceToCreateFabric.Designer.cs">
+      <DependentUpon>201906081809219_AddedSourceToCreateFabric.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fabric.cs" />
@@ -409,7 +425,7 @@
     <Content Include="Views\Fabric\Create.cshtml" />
     <Content Include="Views\Fabric\Delete.cshtml" />
     <Content Include="Views\Fabric\Details.cshtml" />
-    <Content Include="Views\Fabric\Edit.cshtml" />
+    <Content Include="Views\Fabric\EditOrg.cshtml" />
     <Content Include="Views\Fabric\Index.cshtml" />
     <Content Include="Views\Fabric\UploadImage.cshtml" />
     <Content Include="Views\Fabric\_ChooseCategory.cshtml" />
@@ -441,6 +457,7 @@
     <Content Include="Views\Purchases\FabricPurchases.cshtml" />
     <Content Include="Views\Purchases\_Purchases.cshtml" />
     <Content Include="Views\Purchases\CreateFabricPurchase.cshtml" />
+    <Content Include="Views\Fabric\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -481,6 +498,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808280101439_AddedImagePath2.resx">
       <DependentUpon>201808280101439_AddedImagePath2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811120049038_RemovedItemsSold.resx">
+      <DependentUpon>201811120049038_RemovedItemsSold.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012116166_AddMinusQuantity.resx">
+      <DependentUpon>201812012116166_AddMinusQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906081539552_TotalInchesChange.resx">
+      <DependentUpon>201906081539552_TotalInchesChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906081809219_AddedSourceToCreateFabric.resx">
+      <DependentUpon>201906081809219_AddedSourceToCreateFabric.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

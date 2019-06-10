@@ -22,17 +22,19 @@
             <br />
             <input type="file" title="Upload Image" name="files" id="file1" onchange="show(this)" />
             @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
-            <input type="file" title="Upload Image 2" name="files" id="file2" onchange="show(this)" />
-            @Html.ValidationMessageFor(model => model.ImagePath2, "", new { @class = "text-danger" })
+
+            @*<input type="file" title="Upload Image 2" name="files" id="file2" onchange="show(this)" />*@
+            @*@Html.ValidationMessageFor(model => model.ImagePath2, "", new { @class = "text-danger" })*@
             <script type="text/javascript">
                 function show(input) {
                     if (input.files && input.files[0]) {
                         var filereader = new FileReader();
                         filereader.onload = function (e) {
                             $('#user_img').attr('src', e.target.result);
-                            $('#user_img2').attr('src', e.target.result);
+                            //$('#user_img2').attr('src', e.target.result);
                         }
                         filereader.readAsDataURL(input.files[0]);
+
                     }
                 }
             </script>
@@ -111,13 +113,21 @@
         </div>
     </div>
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.TotalQty, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Source, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TotalQty, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TotalQty, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Source, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Source, "", new { @class = "text-danger" })
         </div>
-    </div>*@
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Total Inches</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotalInches, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TotalInches, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -132,14 +142,6 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ItemsSold, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ItemsSold, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ItemsSold, "", new { @class = "text-danger" })
         </div>
     </div>
 

@@ -13,9 +13,8 @@
     <div class="media-body">
         <h4 class="media-heading">@Model.MainCategory.Name / @Model.SubCategory1.Name </h4>
         Name: @Model.Name<br />
-        Quantity: @Model.TotalQty yd(s)<br />
+        Quantity: @Model.TotalInches inches<br />
         Location: @Model.Location<br />
-        Sold to Date: <span style="color: red; font-weight: bold">@Model.ItemsSold</span><br />
         Purchases:<br />
         @Html.ActionLink("Edit Details", "Edit", new { id = Model.FabricId })
         <!--set htmlAttributes to null to pick correct overload-->

@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     padding-bottom: 20px;
 }
 
@@ -24,5 +24,11 @@ textarea {
 }
 .heading {
     font-size: 1.5em;
+}
+hr {
+    margin: 5px 0 5px 0;
+}
+.short-width {
+    max-width: 75px;
 }
 

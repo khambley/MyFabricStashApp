@@ -30,15 +30,10 @@
         });
     });
 </script>
-
 <div class="col-md-10">
     @Html.DropDownList("MainCategoryId", null, htmlAttributes: new { @class = "form-control" })
     <a class="button" href="@Url.Content("~/Category/Create")" id="categoryAddLink" target="_blank">Add New Category</a>
-
-    @Html.ValidationMessageFor(model => model.MainCategoryId, "", new { @class = "text-danger" })
-
-
-    <script src="~/Scripts/ui/jquery.ui.combobox.js"></script>
-    @*<script src="@Url.Content("~/Scripts/chooseCategory.js")"></script>*@
 </div>
+@Html.ValidationMessageFor(model => model.MainCategoryId, "", new { @class = "text-danger" })
+@*<script src="~/Scripts/ui/jquery.ui.combobox.js"></script>*@
 
